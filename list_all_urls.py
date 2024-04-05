@@ -3,7 +3,7 @@ import sys
 import bs4 as bs
 import urllib.request
 import validators
-
+from urllib.parse import urlparse
 
 def is_valid_url(url):
     return validators.url(url)
@@ -19,9 +19,13 @@ def get_urls(soup):
 
 
 def parse_url(url, base_url):
+    parsed_url = urlparse(base_url)
+    base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+    if base_url.endswith('/'):
+        base_url = base_url[:-1]
     if url.startswith("/"):
         return base_url + url
-    if not url.startswith("http"):
+    if not url.startswith("https"):
         return f"{base_url}/{url}"
     else:
         return url
@@ -47,14 +51,11 @@ if __name__ == "__main__":
     print(program_name)
     print(welcome_message)
     print(f"Scraping: {base_url} \n")
-
     soup = get_soup(base_url)
     title = soup.title.text
     print(f"Title: {title}")
-
     urls = get_urls(soup)
     parsed_urls = parse_urls(urls, base_url)
-
     for url in parsed_urls:
         print(f"{url}")
 

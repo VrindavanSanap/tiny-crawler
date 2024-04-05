@@ -1,6 +1,7 @@
 import time
 from list_all_urls import *
 
+from urllib.parse import urlparse
 
 from flask import Flask, render_template, request
 import validators
@@ -29,8 +30,14 @@ def form():
         soup = get_soup(base_url)
         urls = get_urls(soup)
         urls = parse_urls(urls, base_url)
+        n_same_hostname = 0
+        for url in urls:
+            base_url_hostname = urlparse(base_url).hostname
+            if urlparse(url).hostname == base_url_hostname:
+                n_same_hostname += 1
+
         time_taken = time.time() - st
-        return render_template('form.html', url=base_url, time_taken=time_taken, error=error, urls=urls)
+        return render_template('form.html', url=base_url, time_taken=time_taken, n_same_hostname=n_same_hostname, error=error, urls=urls)
 
     else:
         # Display the empty form

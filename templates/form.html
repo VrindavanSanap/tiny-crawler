@@ -18,8 +18,12 @@
     <p id="error_p">{{error}}</p>
     </br>
     <i>
-        <p id="n_urls"><b>{{urls|length}}</b> urls found in {{time_taken}} seconds</p>
+        <p id="n_urls"><b>{{urls|length}}</b> urls found in {{time_taken|float|round(2)}} seconds</p>
+        <p id="n_same_hostname"><b>{{n_same_hostname}}</b> from same hostname, <b>{{urls|length-n_same_hostname}}</b>
+            from different
+            hostname.</p>
     </i>
+    </br>
     <ul id="urls">
         {% for url in urls%}
         <li id="url"><a href={{url}}>{{ url }}</a></li>
