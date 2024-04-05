@@ -5,8 +5,10 @@ import urllib.request
 import validators
 from urllib.parse import urlparse
 
+
 def is_valid_url(url):
     return validators.url(url)
+
 
 def get_soup(base_url):
     source = urllib.request.urlopen(base_url).read()
@@ -18,23 +20,25 @@ def get_urls(soup):
     return soup.find_all(href=True)
 
 
-def parse_url(url, base_url):
-    parsed_url = urlparse(base_url)
-    base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+def parse_url(url, base_url, same_base_url=True):
+    parsed_base_url = urlparse(base_url)
+    base_url = f"{parsed_base_url.scheme}://{parsed_base_url.netloc}"
     if base_url.endswith('/'):
         base_url = base_url[:-1]
     if url.startswith("/"):
         return base_url + url
-    if not url.startswith("https"):
+    if not url.startswith("http"):
         return f"{base_url}/{url}"
     else:
         return url
 
 
-def parse_urls(urls, base_url):
-    return [parse_url(url["href"], base_url) for url in urls]
-
-
+def parse_urls(urls, base_url, same_hostname = True):
+    urls = [parse_url(url["href"], base_url) for url in urls]
+    if(same_hostname):
+        return [url for url in urls if urlparse(url).hostname == urlparse(base_url).hostname]
+    else:
+        return urls
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         base_url = sys.argv[1]

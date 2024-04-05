@@ -13,7 +13,10 @@
     <form id="url_input_form" method="POST">
         <label for="url_input">URL:</label>
         <input type="text" id="url_input" name="url_input" value={{url}} required>
-        <button type="submit">Submit</button>
+        <button id="submit_btn" type="submit">Submit</button>
+        <br>
+        <label for="same_hostname_checkbox">Same hostname:</label>
+        <input type="checkbox" name="same_hostname_checkbox" {% if same_hostname %}checked{% endif %}>
     </form>
     <p id="error_p">{{error}}</p>
     </br>

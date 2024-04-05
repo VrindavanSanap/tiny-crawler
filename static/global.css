@@ -4,7 +4,9 @@
   box-sizing: border-box;
   font-family:'Lucida Console', monospace
 }
-
+label{
+  font-size: 1.75vw;
+}
 p{
   font-size: 2vw;
 }
@@ -52,4 +54,42 @@ h1 {
 #n_same_hostname{
 
   margin-left: 10px;
+}
+/* Styles for the button */
+#submit_btn {
+  display: inline-block;
+  padding: 2.5px;
+  font-size: 2vw;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #007bff; /* Default blue color, you can change it */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect */
+#submit_btn:hover {
+  background-color: #0056b3; /* Darker shade of blue */
+}
+
+/* Active state */
+#submit_btn:active {
+  background-color: #004080; /* Even darker shade of blue */
+}
+
+/* Disabled state */
+#submit_btn:disabled {
+  background-color: #cccccc; /* Light gray */
+  cursor: not-allowed;
+}
+#same_hostname_checkbox {
+	width: 400px;
+	height: 10px;
+	background: #555;
+	position: relative;
+	border-radius: 3px;
 }
