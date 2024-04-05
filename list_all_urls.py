@@ -22,23 +22,24 @@ def get_urls(soup):
 
 def parse_url(url, base_url, same_base_url=True):
     parsed_base_url = urlparse(base_url)
-    base_url = f"{parsed_base_url.scheme}://{parsed_base_url.netloc}"
-    if base_url.endswith('/'):
-        base_url = base_url[:-1]
+    base_url = f"{parsed_base_url.scheme}://{parsed_base_url.netloc}".rstrip('/')
+
     if url.startswith("/"):
         return base_url + url
-    if not url.startswith("http"):
+    elif not url.startswith("http"):
         return f"{base_url}/{url}"
     else:
         return url
 
 
-def parse_urls(urls, base_url, same_hostname = True):
+def parse_urls(urls, base_url, same_hostname=True):
     urls = [parse_url(url["href"], base_url) for url in urls]
-    if(same_hostname):
+    if (same_hostname):
         return [url for url in urls if urlparse(url).hostname == urlparse(base_url).hostname]
     else:
         return urls
+
+
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         base_url = sys.argv[1]
