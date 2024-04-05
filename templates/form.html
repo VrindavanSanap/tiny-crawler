@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./global.css') }}">
+    <title>List all URLs in web page</title>
+</head>
+
+<body>
+    <h1 id="title">List all URLs in web page</h1>
+    <form id="url_input_form" method="POST">
+        <label for="url_input">URL:</label>
+        <input type="text" id="url_input" name="url_input" value={{url}} required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="error_p">{{error}}</p>
+    </br>
+    <i>
+        <p id="n_urls"><b>{{urls|length}}</b> urls found in {{time_taken}} seconds</p>
+    </i>
+    <ul id="urls">
+        {% for url in urls%}
+        <li id="url"><a href={{url}}>{{ url }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+</body>
+
+</html>

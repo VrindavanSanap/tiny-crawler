@@ -1,0 +1,51 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:'Lucida Console', monospace
+}
+
+p{
+  font-size: 2vw;
+}
+a#link {
+  color: blue;
+  text-decoration: underline;
+}
+h1 {
+  font-weight: 10;
+  margin: 0;
+  font-size: 4vw;
+}
+#title{
+  margin-left: 10px;
+}
+#url_input_form{
+
+  margin-left: 10px;
+}
+#urls{
+
+  margin-left: 10px;
+}
+#url_input[type="text"] {
+  width: 300px; /* Set the width of the input box */
+  padding: 2.5px;
+  font-size: 2vw;
+  border: 1px solid #ccc; /* Add a border with light gray color */
+  border-radius: 2.5px; /* Add rounded corners */
+  outline: none; /* Remove the default focus outline */
+}
+
+/* Style for when the input box is focused */
+#url_input[type="text"]:focus {
+  border-color: #007bff; /* Change border color when focused */
+  box-shadow: 0 0 2px #007bff; /* Add a subtle box shadow when focused */
+}
+#n_urls{
+  margin-left: 10px;
+}
+#error_p{
+  margin-left: 10px;
+
+}
