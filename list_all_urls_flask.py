@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import time
 from list_all_urls import *
 from urllib.parse import urlparse
